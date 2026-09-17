@@ -1,0 +1,8 @@
+rootProject.name = 'demo'
+
+include 'model'
+include 'usecase'
+include 'repository'
+include 'drivenadapters-gemini'
+include 'entrypoints-rest'
+include 'application'

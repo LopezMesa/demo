@@ -1,0 +1,4 @@
+dependencies {
+    implementation project(':model')
+    implementation 'com.google.genai:google-genai:1.71.0'
+}
