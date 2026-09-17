@@ -1,6 +1,8 @@
 plugins {
     id 'org.springframework.boot' version '4.0.7' apply false
     id 'io.spring.dependency-management' version '1.1.7' apply false
+    id 'org.sonarqube' version '7.3.1.8318'
+    id 'jacoco'
 
 }
 
@@ -10,6 +12,14 @@ allprojects {
 
     repositories {
         mavenCentral()
+    }
+}
+
+sonar {
+    properties {
+        property "sonar.projectKey", "LopezMesa_demo"
+        property "sonar.organization", "lopezmesa"
+        property "sonar.host.url", "https://sonarcloud.io/summary/new_code?id=LopezMesa_demo)"
     }
 }
 
@@ -40,7 +50,6 @@ subprojects {
 
             implementation 'org.springframework.boot:spring-boot-starter'
 
-            implementation 'org.slf4j:slf4j-api:2.0.19'
         }
     }
 
