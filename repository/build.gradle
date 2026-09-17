@@ -1,0 +1,4 @@
+// Outbound persistence adapter. Framework-specific dependencies belong here.
+dependencies {
+    implementation project(':model')
+}

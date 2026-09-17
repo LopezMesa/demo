@@ -1,0 +1,6 @@
+dependencies {
+    implementation project(':model')
+    implementation project(':usecase')
+    implementation 'org.springframework:spring-webmvc'
+    implementation 'jakarta.validation:jakarta.validation-api'
+}

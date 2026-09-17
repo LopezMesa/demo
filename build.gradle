@@ -1,0 +1,70 @@
+plugins {
+    id 'org.springframework.boot' version '4.0.7' apply false
+    id 'io.spring.dependency-management' version '1.1.7' apply false
+    id 'org.sonarqube' version '7.3.1.8318'
+    id 'jacoco'
+
+}
+
+allprojects {
+    group = 'com.example'
+    version = '0.0.1-SNAPSHOT'
+
+    repositories {
+        mavenCentral()
+    }
+}
+
+sonar {
+    properties {
+        property "sonar.projectKey", "LopezMesa_demo"
+        property "sonar.organization", "lopezmesa"
+        property "sonar.host.url", "https://sonarcloud.io"
+    }
+}
+
+subprojects {
+    apply plugin: 'java-library'
+    apply plugin: 'io.spring.dependency-management'
+    // id 'org.sonarqube' version '...'
+    apply plugin: 'jacoco'
+
+    java {
+        toolchain {
+            languageVersion = JavaLanguageVersion.of(21)
+        }
+    }
+
+    dependencyManagement {
+        imports {
+            mavenBom 'org.springframework.boot:spring-boot-dependencies:4.0.7'
+        }
+    }
+
+
+    dependencies {
+        dependencies {
+            testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+            testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+            implementation 'org.springframework.boot:spring-boot-starter'
+
+        }
+    }
+
+    tasks.named('test') {
+        useJUnitPlatform()
+    }
+
+    tasks.named('jacocoTestReport') {
+        dependsOn test
+
+        reports {
+            xml.required = true
+            html.required = true
+        }
+    }
+
+
+}
